@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Bilal Raza</h1>
+    <p>I am bla bla bla</p>
+    <button>Click me</button>
+</body>
+
+<script>
+    // rules for variable name
+    //1. it will not start with numbers
+    //2. there will be no space between variable names
+    //3. there will be no special character except underscore
+    //4. variable name should not be name of javascript keyword.
+    //5. it is best practice to follow camelcase in the variable name
+
+    let studentName = "Bilal Raza" // string
+    let age = 28  //number
+    let isMarried = true //boolean
+    let isBla = undefined // undefined
+    let familyInfo = {} // object
+    let brothers = [] // object
+    let personalInfo = null  //null     
+
+
+    //number + string
+    // let x = 10
+    // let y = 20
+    // console.log("1=>", x + y)
+
+    // let x = 10    
+    // let y = '20'
+    // console.log("2=>", x + y)  
+    //possible results 10 , error , 10+20 , 30,  1020 , 
+
+
+    // let x = '10'    
+    // let y = '20'
+    // console.log("3=>", x + y)  
+
+
+    // let startName = 'Bilal'
+    // let endName = 'Raza'
+    // let fullName = startName + " " + endName
+    // console.log("4=>", fullName) 
+
+
+    // let x = '10'
+    // let y = 10
+    // console.log("5=>", x * y) 
+
+
+
+    let result = (10 - 10) * 2 - 3 + 5
+    console.log("6=>", result)
+
+
+    //     Exercise 1:
+    // There are 50 students in a class.
+    // 40 students passed the exam.
+    // 5 students got A+ grade.
+
+    // Calculate the percentage of:
+    // - Passed students
+    // - Failed students
+    // - A+ grade students
+
+    let total = 50
+    let passed = 40
+    let aPlusGrade = 5
+
+    let percentageOfPassed = passed / total * 100
+    console.log("percentageOfPassed=>", percentageOfPassed)
+
+    let percentageOfFailed = (total - passed) / total * 100
+    console.log("percentageOfFailed=>", percentageOfFailed)
+
+    let percentageOfAPlus = aPlusGrade / total * 100
+    console.log("percentageOfAPlus=>", percentageOfAPlus)
+
+    //     Exercise 2:
+    // A company has 200 employees.
+    // 150 employees are present today.
+    // 20 employees are on leave.
+
+    // Calculate the percentage of:
+    // - Present employees
+    // - Employees on leave
+    // - Absent employees
+
+    // let presentPercent = 150 / 200 * 100
+    // let leavePercent = 20 / 200 * 100
+    // let absentPercent = (200 - 150 - 20) / 200 * 100
+
+    // console.log(presentPercent, leavePercent, absentPercent)
+
+
+    // Exercise 3:
+    // A shop received 500 orders this month.
+    // 420 orders were delivered successfully.
+    // 30 orders were returned.
+
+    // Calculate the percentage of:
+    // - Successfully delivered orders
+    // - Returned orders
+    // - Remaining orders
+
+    let totalOrders = 500
+    let successOrders = 420
+    let returnedOrders = 30
+    let remainingOrders = totalOrders - successOrders - returnedOrders
+    console.log("percentageOfSuccessOrders=>", successOrders / totalOrders * 100)
+
+
+
+
+</script>
+
+
+</html>
