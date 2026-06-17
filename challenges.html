@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Challenges</h1>
+
+</body>
+<script>
+    let obtainedMarks = 72;
+    let passingMarks = 40;
+    let attendance = 85;
+    let requiredAttendance = 75;
+    // 1. Check if the student has passed.
+    if (obtainedMarks >= passingMarks) { console.log("Student is passed") }
+    else { console.log("Student is failed") }
+    // 2. Check if attendance meets the requirement.
+    if (attendance >= requiredAttendance) { console.log("Attendance is OK") }
+    else { console.log("Attendance is not OK") }
+    // 3. Check if the student can sit in the final exam (must pass AND have required attendance).
+    if (attendance >= requiredAttendance && obtainedMarks >= passingMarks) { console.log("Student can sit") }
+    else { console.log("Student cannot Sit") }
+    // 4. Check if the student qualifies for a scholarship (marks greater than 70 OR attendance greater than 90).
+    if (attendance >= 90 || obtainedMarks > 70) { console.log("Scholar ship mil jaegi") }
+    else { console.log("Scholar ship nahn milegi") }
+
+</script>
+
+</html>
