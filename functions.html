@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+
+<body>
+    <h1>Functions</h1>
+    <h1 id="counter">10</h1>
+    <button id="plus">Plus</button>
+    <button id="minus">Minus</button>
+</body>
+<script>
+    let counterH1 = document.querySelector("#counter")
+    let plusBtn = document.querySelector("#plus")
+    let minusBtn = document.querySelector("#minus")
+    console.log(counterH1)
+    console.log(plusBtn)
+    console.log(minusBtn)
+
+    let counter = counterH1.innerHTML
+    
+    let increment = () => {
+        counter++
+        counterH1.innerHTML = counter
+    }
+    let decrement = () => {
+        counter--
+        counterH1.innerHTML = counter
+    }
+    plusBtn.addEventListener("click", increment)
+    minusBtn.addEventListener("click", decrement)
+</script>
+
+</html>
