@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb</title>
+</head>
+
+<body>
+    <img src="https://media.istockphoto.com/id/523616495/photo/light-bulb.jpg?b=1&s=612x612&w=0&k=20&c=AO0z6_eLnoVnJ7VFMG_jqviAkaXiXQMvhTc5kamwwSI="
+        alt="Bulb is off" id="bulb" height="400" width="600" />
+    <button id="onOff">ON</button>
+</body>
+<script>
+
+    let on = "https://images.pexels.com/photos/28214102/pexels-photo-28214102.jpeg"
+    let off = "https://media.istockphoto.com/id/523616495/photo/light-bulb.jpg?b=1&s=612x612&w=0&k=20&c=AO0z6_eLnoVnJ7VFMG_jqviAkaXiXQMvhTc5kamwwSI="
+    let isBulbOn = false
+    let bulbImg = document.querySelector("#bulb")
+    let onOffButton = document.querySelector("#onOff")
+   
+    let onOff = () => {
+        if (isBulbOn) {
+            bulbImg.src = off
+            isBulbOn = false
+            onOffButton.innerHTML = "On"
+        } else {
+            bulbImg.src = on
+            isBulbOn = true
+            onOffButton.innerHTML = "Off"
+        }
+    }
+   
+   onOffButton.addEventListener('click', onOff)
+</script>
+
+</html>

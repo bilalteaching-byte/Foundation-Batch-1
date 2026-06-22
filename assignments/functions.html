@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+</head>
+
+<body>
+    <h1 id="marks">50</h1>
+    <button id="add_marks">Add Marks</button>
+    <button id="deduct_marks">Deduct Marks</button>
+</body>
+
+<script>
+    let marksH1 = document.querySelector("#marks")
+    let addButton = document.querySelector("#add_marks")
+    let deductButton = document.querySelector("#deduct_marks")
+    //arrow function
+    let addMarks = () => {
+        if (marksH1.innerHTML < 100) {
+            marksH1.innerHTML = +marksH1.innerHTML + 5
+        }
+    }
+
+    let deductMarks = () => {
+        if (marksH1.innerHTML > 0) {
+            marksH1.innerHTML -= 5
+        }
+    }
+
+    addButton.addEventListener("click", addMarks)
+    deductButton.addEventListener("click", deductMarks)
+
+</script>
+
+</html>
