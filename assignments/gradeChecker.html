@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Checker</title>
+</head>
+
+<body>
+    <input placeholder="Your Percentage" id="user_percent" />
+    <button id="check_grade">Check Grade</button>
+    <p id="result"></p>
+
+    <script>
+        let userInput = document.querySelector("#user_percent")
+        let checkButton = document.querySelector("#check_grade")
+        let resultPara = document.querySelector("#result")
+
+        let checkResult = () => {
+            console.log(userInput)
+            let userPercent = userInput.value
+            if (userPercent >= 50) {
+                resultPara.innerHTML = "You are Pass"
+                resultPara.style.color = "green"
+            } else {
+                resultPara.innerHTML = "You are FAIL"
+                resultPara.style.color = "red"
+            }
+        }
+        checkButton.addEventListener("click", checkResult)
+
+    </script>
+</body>
+
+</html>

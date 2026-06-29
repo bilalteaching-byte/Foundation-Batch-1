@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odd Even Checker</title>
+</head>
+
+<body>
+    <input placeholder="Your Number" id="user_number" />
+    <button id="check_even_odd">Check Even/Odd</button>
+    <p id="result"></p>
+
+    <script>
+        let user_number = document.querySelector("#user_number")
+        let check_even_odd = document.querySelector("#check_even_odd")
+        let result = document.querySelector("#result")
+
+        let checkResult = () => {
+            let userNumber = user_number.value
+            if (userNumber % 2 == 0) {
+                result.innerHTML = "It is EVEN"
+                result.style.color = "green"
+            } else {
+                result.innerHTML = "It is ODD"
+                result.style.color = "blue"
+            }
+        }
+        check_even_odd.addEventListener("click", checkResult)
+
+    </script>
+</body>
+
+</html>
