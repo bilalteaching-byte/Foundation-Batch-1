@@ -10,23 +10,26 @@
 <body>
     <h1>Loop</h1>
 
-    <input placeholder="Table Off" id="table_off" />
-    <input placeholder="No of Time" id="number_of_times" />
-    <button id="table_button">Show Table</button>
+    <input placeholder="Starting No" id="starting" />
+    <input placeholder="Ending No" id="ending" />
+    <button id="table_button">Show Numbers</button>
     <div id="table"></div>
 
     <script>
-        let tableOff = document.getElementById("table_off")
-        let numberOfTimes = document.getElementById("number_of_times")
+        let startingNo = document.getElementById("starting")
+        let endingNo = document.getElementById("ending")
         let tableBtn = document.getElementById("table_button")
         let tableDiv = document.getElementById("table")
+
         let renderTable = () => {
-            let tableOffValue = tableOff.value
-            let numberOfTimesValue = numberOfTimes.value
+            let startingNoValue = startingNo.value
+            let endingNoValue = endingNo.value
             tableDiv.innerHTML = ""
-            for (x = 1; x <= numberOfTimesValue; x++) {
-                let para = "<p>" + tableOffValue + " x " + x + " = " + x * tableOffValue + "</p>"
-                tableDiv.innerHTML += para
+            for (x = startingNoValue; x <= endingNoValue; x++) {
+                if (x % 2 == 0) {
+                    let para = "<p>" + x + "</p>"
+                    tableDiv.innerHTML += para
+                }
             }
         }
         tableBtn.addEventListener("click", renderTable)
