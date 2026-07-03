@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruitlist</title>
+</head>
+
+<body>
+    <h1>Fruitlist</h1>
+    <input placeholder="Add Fruit Name" id="fruit_name" /> <button id="fruit_btn">Add</button>
+    <div id="container"></div>
+</body>
+
+<script>
+    let container_div = document.querySelector("#container")
+    let fruit_name = document.querySelector("#fruit_name")
+    let fruit_btn = document.querySelector("#fruit_btn")
+    let fruits = ["Apple", "Banana", "Grapes", "Mango", "Kivi", "Guava"]
+
+    let addFruit = () => {
+        container_div.innerHTML = ""
+        let fruit_name_value = fruit_name.value
+        fruits.push(fruit_name_value)
+        for (let x = 0; x < fruits.length; x++) {
+            container_div.innerHTML += "<p>" + fruits[x] + "</p>"
+        }
+        fruit_name.value = ""
+    }
+
+    fruit_btn.addEventListener("click", addFruit)
+
+    for (let x = 0; x < 6; x++) {
+        container_div.innerHTML += "<p>" + fruits[x] + "</p>"
+    }
+
+
+
+</script>
+
+</html>

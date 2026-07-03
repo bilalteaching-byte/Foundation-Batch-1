@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop Excercices</title>
+</head>
+
+<body>
+    <h1>Excercices</h1>
+    <p>
+        Exercise 1 – Multiplication Table: Create two input fields (Table Number and Number of Times) and a button. When
+        the button is clicked, display the multiplication table inside the page using a for loop.
+        <br>Exercise 2 – Even Numbers: Create one input field where the user enters a number and a button. When clicked,
+        display all even numbers from 1 up to the entered number using a loop.
+        <br>Exercise 3 – Countdown: Create one input field and a button. When the button is clicked, display a countdown
+        from the entered number to 1 inside the page using a for loop.
+        <br> <br>Exercise 4 – Sum of Numbers: Create one input field and a button. When the button is clicked, calculate
+        and
+        display the sum of all numbers from 1 to the entered number using a loop. Show the final answer on the page.
+        <br> <br>
+        <input placeholder="Number" id="sum_input" /> <button id="sum_btn">Click</button>
+        <span id="answerOfSum"></span>
+
+
+        <br> <br> Exercise 5 – Number Pattern: Create one input field and a button. When the button is clicked, display
+        the
+        following pattern according to the entered number using nested for loops. Example: If the input is 5, the output
+        should be: 1, 12, 123, 1234, 12345 (each on a new line).
+    </p>
+
+    <input id="pattern_input" placeholder="Pattern" />
+    <button id="pattern_btn">Click</button>
+
+    <div id="pattern_div">
+
+    </div>
+
+
+    <script>
+        //pattern excercise
+        let pattern_input = document.querySelector("#pattern_input")
+        let pattern_btn = document.querySelector("#pattern_btn")
+        let pattern_div = document.querySelector("#pattern_div")
+
+        let createPattern = () => {
+            pattern_div.innerHTML = ""
+            let pattern = "0"
+            for (let x = 1; x <= pattern_input.value; x++) {
+                pattern += x + "," 
+                pattern_div.innerHTML += "<p>" + pattern + "</p>"
+            }
+        }
+        pattern_btn.addEventListener("click", createPattern)
+
+
+
+        //calculate sum of numbers
+        let sum_input = document.querySelector("#sum_input")
+        let sum_btn = document.querySelector("#sum_btn")
+        let answerOfSum = document.querySelector("#answerOfSum")
+
+        let calculate = () => {
+            let num = 0
+            for (x = 1; x <= sum_input.value; x++) {
+                num = num + x
+            }
+            answerOfSum.innerHTML = num
+        }
+        sum_btn.addEventListener('click', calculate)
+    </script>
+</body>
+</0html>

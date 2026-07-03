@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+
+<body>
+    <h1>Array in Javascript</h1>
+
+    <h2>Array Methods</h2>
+    <ol>
+        <li>Push : Add element at the end of an array</li>
+        <li>Pop</li>
+        <li>Shift</li>
+        <li>Unshift</li>
+        <li>Slice</li>
+        <li>Splice</li>
+    </ol>
+
+    <div id="container"></div>
+</body>
+
+<script>
+    let container_div = document.querySelector("#container")
+    let fruits = ["Apple", "Banana", "Grapes", "Mango", "Kivi", "Guava"]
+    console.log("before=>", fruits)
+    //1st method push
+    fruits.push("Strawberry" , "Orange" , "Cherry")
+    console.log(fruits)
+    for (let x = 0; x < 6; x++) {
+        console.log(fruits[x])
+        container_div.innerHTML += "<p>" + fruits[x] + "</p>"
+    }
+</script>
+
+</html>
