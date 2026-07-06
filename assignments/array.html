@@ -13,11 +13,11 @@
     <h2>Array Methods</h2>
     <ol>
         <li>Push : Add element at the end of an array</li>
-        <li>Pop</li>
-        <li>Shift</li>
-        <li>Unshift</li>
-        <li>Slice</li>
-        <li>Splice</li>
+        <li>Pop : Remove element at the end of an array</li>
+        <li>Shift : Remove first element of an array</li>
+        <li>Unshift : Add element at the start of an array</li>
+        <li>Slice : use to copy the part of an array or complete array and make new array</li>
+        <li>Splice : use to add, remove element from anywhere in an array.</li>
     </ol>
 
     <div id="container"></div>
@@ -28,10 +28,55 @@
     let fruits = ["Apple", "Banana", "Grapes", "Mango", "Kivi", "Guava"]
     console.log("before=>", fruits)
     //1st method push
-    fruits.push("Strawberry" , "Orange" , "Cherry")
+
+    fruits.push("Strawberry", "Orange", "Cherry")
+    console.log("after push=>", fruits)
+
+    //2nd method Pop
+    fruits.pop()
+    console.log("after pop=>", fruits)
+
+    //3rd method Shift
+    fruits.shift()
+    console.log("after shift=>", fruits)
+
+    //4th method Shift
+    fruits.unshift("Apple", "Watermelon")
+    console.log("after unshift=>", fruits)
+    //5th method
+    // 2 paramters leta he , 
+    // 1st -> kahan se copy krna shru krna he , 
+    // 2nd => kahan se pehle tk copy krna he
+    // agr mujhe end tk copy krna he to sirf mein pehle parameter pass krunga
+    let newList = fruits.slice(1, 4)
+    // console.log("New Copy", newList)
+    // console.log("Copy till end", fruits.slice(1))
+
+
+
+    // splice
+    // 3 paramers leta he
+    // 1.kahan se delete/update krna start krna he
+    // 2.kitne elements remove krna hen
+    // 3.unki jagha jo elements add krne hen
+    fruits.splice(1, 0, "a", 'b')
     console.log(fruits)
+    // usecases
+    //1.element delete krne ke lye
+    //2.element add krne ke lye
+    //3.element add or delete donu karne ke lye
+
+
+
+
+
+
+
+
+
+
     for (let x = 0; x < 6; x++) {
-        console.log(fruits[x])
+        // console.log(fruits[x])
         container_div.innerHTML += "<p>" + fruits[x] + "</p>"
     }
 </script>
