@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String & Number Methods</title>
+</head>
+
+<body>
+    <h1>
+        String & Number Methods
+    </h1>
+
+    <p id="attackPara">
+        US attacks Iran on 10th July and US ask Iran to open the
+        strait of Hormuz for all type of vehicles and if Iran does not
+        open the strait US will attack Iran again on 11th of July
+    </p>
+    <button id="replaceBtn">Replace</button>
+    <ol>
+        <li><b>String Methods</b>
+            <ol>
+                <li>length</li>
+                <li>slice</li>
+                <li>replace</li>
+                <li>substring , similar to slice</li>
+                <li>toUpperCase</li>
+                <li>toLowerCase</li>
+                <li>trim ,  remove extra space from start and end</li>
+            </ol>
+        </li>
+    </ol>
+
+    <script>
+        // get length
+        let fullname = " Bilal Raza"
+        fullname = fullname.trim() //trim
+        console.log("length=>", fullname.length)
+
+        console.log("index of =>" , fullname.indexOf("Ahmed"))
+        // slice , copy krta he
+        let firstName = fullname.slice(0, 5)
+        console.log("slice=>", firstName)
+        console.log("to upper case=>", fullname.toUpperCase())
+        console.log("to lower case=>", fullname.toLowerCase())
+        
+        let attackPara = document.getElementById("attackPara")
+        let replaceBtn = document.getElementById("replaceBtn")
+        let replaceParac = () => {
+            attackPara.innerHTML = attackPara.innerHTML.replaceAll("US", "America")
+        }
+        replaceBtn.addEventListener("click", replaceParac)
+
+    </script>
+</body>
+
+</html>
