@@ -1,26 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body> 
-    <h1>My Assignments</h1>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Fundamentals — Assignment Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0D12;
+    --surface: #12151C;
+    --surface-2: #191D27;
+    --line: rgba(237,235,230,0.09);
+    --line-strong: rgba(237,235,230,0.16);
+    --text: #EDEBE6;
+    --muted: #8A8FA0;
+    --amber: #FFB454;
+    --amber-dim: #8a6a35;
+    --mint: #6EE7B7;
+    --radius: 14px;
+  }
 
-    <ol>
-        <li><a href="bulb.html">Buld On Off</a></li>
-        <li><a href="functions.html">Counter App</a></li>
-        <li><a href="gradeChecker.html">Grade Checker</a></li>
-        <li><a href="oddEvenChecker.html">Odd Even Checker</a></li>
-        <li><a href="loop.html">Loop Ex 1 - Table</a></li>
-        <li><a href="loop_ex_2.html">Loop Ex 2 - StartEnd</a></li>
-        <li><a href="loopExcercices.html">Loop Assignment Excercices </a></li>
-        <li><a href="array.html">Array </a></li>
-        <li><a href="fruitlist.html">Fruitlist </a></li>
-        <li><a href="date.html">Date In Javascript </a></li>
-        <li><a href="stringNumberMethods.html">String & Number Methods </a></li>
-        
-    </ol>
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* faint dot grid ambience */
+  body::before{
+    content:"";
+    position: fixed; inset:0;
+    background-image: radial-gradient(rgba(237,235,230,0.05) 1px, transparent 1px);
+    background-size: 26px 26px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky; top:0; z-index:20;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 6vw;
+    background: rgba(11,13,18,0.75);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono', monospace; font-weight:600; letter-spacing:0.02em; }
+  .brand-dot{ width:9px; height:9px; border-radius:50%; background: var(--amber); box-shadow: 0 0 10px 2px rgba(255,180,84,0.7); }
+  nav a{ font-size: 13.5px; color: var(--muted); margin-left: 28px; transition: color .2s ease; }
+  nav a:hover{ color: var(--text); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; z-index:1;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    padding: 9vh 6vw 8vh;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--mint);
+    border:1px solid rgba(110,231,183,0.25);
+    background: rgba(110,231,183,0.06);
+    padding:6px 12px; border-radius: 100px;
+    margin-bottom:22px;
+  }
+  h1.headline{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size: clamp(2rem, 4vw, 3.35rem);
+    line-height:1.15;
+    margin:0 0 22px;
+    letter-spacing: -0.01em;
+  }
+  h1.headline .cursor{
+    display:inline-block; width:0.5ch; background: var(--amber);
+    animation: blink 1s step-end infinite;
+    margin-left:2px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  h1.headline .fn{ color: var(--muted); }
+  h1.headline .str{ color: var(--amber); }
+
+  .hero p.sub{
+    font-size:16.5px; line-height:1.7; color: var(--muted);
+    max-width: 46ch;
+    margin: 0 0 32px;
+  }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:13.5px; font-weight:500;
+    padding:13px 22px; border-radius:9px; border:1px solid var(--line-strong);
+    display:inline-flex; align-items:center; gap:8px;
+    transition: all .2s ease;
+  }
+  .btn.primary{ background: var(--amber); color:#1a1204; border-color:var(--amber); }
+  .btn.primary:hover{ box-shadow: 0 0 0 4px rgba(255,180,84,0.15); transform: translateY(-1px); }
+  .btn.ghost:hover{ border-color: var(--line-strong); background: var(--surface-2); }
+
+  /* ---------- BULB SIGNATURE ---------- */
+  .bulb-stage{
+    position:relative;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 30px;
+  }
+  .bulb-glow{
+    position:absolute; width:340px; height:340px; border-radius:50%;
+    background: radial-gradient(circle, rgba(255,180,84,0.35), rgba(255,180,84,0) 70%);
+    filter: blur(4px);
+    opacity:0; transition: opacity .5s ease;
+    pointer-events:none;
+  }
+  .bulb-stage.on .bulb-glow{ opacity:1; }
+  .bulb-wrap{ cursor:pointer; position:relative; z-index:1; user-select:none; text-align:center; }
+  .bulb-wrap svg{ width:150px; height:auto; display:block; margin:0 auto; transition: filter .4s ease; }
+  .bulb-wrap .filament{ transition: opacity .3s ease; opacity:0; }
+  .bulb-stage.on .filament{ opacity:1; }
+  .bulb-wrap .glass{ transition: fill .4s ease, stroke .4s ease; }
+  .bulb-label{
+    margin-top:18px; font-family:'JetBrains Mono', monospace; font-size:12.5px;
+    color: var(--muted); letter-spacing:0.04em;
+  }
+  .bulb-stage.on .bulb-label{ color: var(--amber); }
+  .stat-row{ display:flex; gap:28px; margin-top:26px; }
+  .stat{ text-align:center; }
+  .stat b{ display:block; font-family:'JetBrains Mono', monospace; font-size:22px; color: var(--text); }
+  .stat span{ font-size:11.5px; color: var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ---------- MODULES ---------- */
+  main{ position:relative; z-index:1; padding: 2vh 6vw 10vh; }
+  .module{ margin-bottom: 64px; }
+  .module-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:22px;
+    border-bottom:1px solid var(--line); padding-bottom:16px;
+  }
+  .module-num{ font-family:'JetBrains Mono', monospace; color: var(--amber-dim); font-size:14px; }
+  .module-title{ font-size: 1.35rem; font-weight:800; margin:0; }
+  .module-desc{ color: var(--muted); font-size:14px; margin-left:auto; text-align:right; max-width:32ch; }
+
+  .card-grid{
+    display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    gap:18px;
+  }
+  .card{
+    background: var(--surface);
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    display:flex; flex-direction:column;
+    transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0; border-radius:inherit;
+    background: linear-gradient(135deg, rgba(255,180,84,0.08), transparent 55%);
+    opacity:0; transition: opacity .25s ease;
+  }
+  .card:hover{ transform: translateY(-4px); border-color: rgba(255,180,84,0.35); background: var(--surface-2); }
+  .card:hover::before{ opacity:1; }
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+  .card-title{ font-size:16.5px; font-weight:700; margin:0; }
+  .ext-tag{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; color: var(--muted);
+    border:1px solid var(--line-strong); padding:3px 7px; border-radius:5px; flex-shrink:0; margin-left:10px;
+  }
+  .card-desc{ font-size:13.5px; color: var(--muted); line-height:1.6; margin:0 0 20px; flex-grow:1; }
+  .card-open{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px; font-weight:500;
+    color: var(--mint); display:inline-flex; align-items:center; gap:6px;
+    margin-top:auto;
+  }
+  .card-open svg{ width:13px; height:13px; transition: transform .2s ease; }
+  .card:hover .card-open svg{ transform: translate(3px,-3px); }
+
+  footer{
+    position:relative; z-index:1;
+    border-top:1px solid var(--line);
+    padding: 30px 6vw; display:flex; justify-content:space-between; align-items:center;
+    color: var(--muted); font-size:13px;
+  }
+  footer .mono{ color: var(--muted); }
+
+  @media (max-width: 880px){
+    .hero{ grid-template-columns: 1fr; padding-top:6vh; }
+    .bulb-stage{ order:-1; }
+    .module-head{ flex-direction:column; align-items:flex-start; }
+    .module-desc{ margin-left:0; text-align:left; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><span class="brand-dot"></span> js.playground</div>
+  <nav>
+    <a href="#modules">Modules</a>
+    <a href="#footer-note">Notes</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">● For review — trainer walkthrough</div>
+    <h1 class="headline">
+      <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"learning JavaScript,</span><br>
+      <span class="str">&nbsp;&nbsp;one assignment at a time"</span>)<span class="cursor">&nbsp;</span>
+    </h1>
+    <p class="sub">
+      Eleven small builds covering the core of JavaScript — functions, conditionals, loops, arrays,
+      and the DOM. Each one lives in its own file, exactly as written, grouped below by topic.
+    </p>
+    <div class="hero-cta">
+      <a href="#modules" class="btn primary">Browse assignments ↓</a>
+      <a href="#footer-note" class="btn ghost">A note for my trainer</a>
+    </div>
+  </div>
+
+  <div class="bulb-stage" id="bulbStage">
+    <div class="bulb-glow"></div>
+    <div class="bulb-wrap" id="bulbToggle" role="button" aria-label="Toggle the bulb, from bulb.html">
+      <svg viewBox="0 0 120 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="glass" d="M60 6C32 6 12 26 12 54c0 20 11 32 20 41 6 6 9 12 9 20h38c0-8 3-14 9-20 9-9 20-21 20-41C108 26 88 6 60 6Z"
+              fill="#1B1F2A" stroke="#3a3f4d" stroke-width="2"/>
+        <path class="filament" d="M42 60c4-10 12-14 18-14s14 4 18 14M60 46v34M48 62l24 16M72 62l-24 16"
+              stroke="#FFB454" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="41" y="122" width="38" height="10" rx="2" fill="#2b2f3a" stroke="#454b5a"/>
+        <rect x="44" y="134" width="32" height="8" rx="2" fill="#2b2f3a" stroke="#454b5a"/>
+        <rect x="47" y="144" width="26" height="7" rx="2" fill="#2b2f3a" stroke="#454b5a"/>
+      </svg>
+      <div class="bulb-label mono" id="bulbLabel">click to switch on</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b>11</b><span>assignments</span></div>
+      <div class="stat"><b>5</b><span>modules</span></div>
+      <div class="stat"><b>1</b><span>bulb, honestly</span></div>
+    </div>
+  </div>
+</section>
+
+<main id="modules">
+
+  <div class="module">
+    <div class="module-head">
+      <span class="module-num mono">01</span>
+      <h2 class="module-title">DOM &amp; Events</h2>
+      <p class="module-desc">Wiring up buttons and elements to respond to clicks.</p>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="bulb.html">
+        <div class="card-top"><h3 class="card-title">Bulb On / Off</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Toggle a lightbulb image between on and off with a single button and an event listener.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="card" href="functions.html">
+        <div class="card-top"><h3 class="card-title">Counter App</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Add or deduct marks from a score using two buttons, capped between 0 and 100.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <span class="module-num mono">02</span>
+      <h2 class="module-title">Conditionals</h2>
+      <p class="module-desc">Reading input and branching with if / else.</p>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="gradeChecker.html">
+        <div class="card-top"><h3 class="card-title">Grade Checker</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Enter a percentage and find out whether it's a pass or a fail.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="card" href="oddEvenChecker.html">
+        <div class="card-top"><h3 class="card-title">Odd / Even Checker</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Enter a number and check whether it's odd or even.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <span class="module-num mono">03</span>
+      <h2 class="module-title">Loops</h2>
+      <p class="module-desc">Repeating work with <span class="mono">for</span>, one step at a time.</p>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="loop.html">
+        <div class="card-top"><h3 class="card-title">Multiplication Table</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Enter a number and how many times to repeat it, then generate the table with a for loop.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="card" href="loop_ex_2.html">
+        <div class="card-top"><h3 class="card-title">Start–End Range</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Enter a start and end number and list every even number in between.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="card" href="loopExcercices.html">
+        <div class="card-top"><h3 class="card-title">Loop Exercises</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Five practice drills in one page: tables, even numbers, countdowns, sums, and number patterns.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <span class="module-num mono">04</span>
+      <h2 class="module-title">Arrays</h2>
+      <p class="module-desc">Storing lists of things, and changing them in place.</p>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="array.html">
+        <div class="card-top"><h3 class="card-title">Array Methods</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Push, pop, shift, unshift, slice, and splice, all worked through on one fruit basket.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="card" href="fruitlist.html">
+        <div class="card-top"><h3 class="card-title">Fruit List</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Add new fruits to a list from an input field and watch the page update live.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="module">
+    <div class="module-head">
+      <span class="module-num mono">05</span>
+      <h2 class="module-title">Strings, Numbers &amp; Dates</h2>
+      <p class="module-desc">Built-in methods for cleaning up and calculating with text, numbers, and time.</p>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="stringNumberMethods.html">
+        <div class="card-top"><h3 class="card-title">String &amp; Number Methods</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Trim, slice, and replace text pulled from a real news headline.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+      <a class="card" href="date.html">
+        <div class="card-top"><h3 class="card-title">Date in JavaScript</h3><span class="ext-tag mono">.html</span></div>
+        <p class="card-desc">Enter a birthdate and calculate age in seconds, minutes, hours, days, months, and years.</p>
+        <span class="card-open">Open file <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer id="footer-note">
+  <span class="mono">// built while learning JS fundamentals</span>
+  <span class="mono">index.html</span>
+</footer>
+
+<script>
+  const stage = document.getElementById('bulbStage');
+  const toggle = document.getElementById('bulbToggle');
+  const label = document.getElementById('bulbLabel');
+  let on = false;
+  toggle.addEventListener('click', () => {
+    on = !on;
+    stage.classList.toggle('on', on);
+    label.textContent = on ? 'click to switch off' : 'click to switch on';
+  });
+</script>
+
 </body>
 </html>

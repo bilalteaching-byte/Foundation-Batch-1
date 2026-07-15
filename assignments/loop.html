@@ -4,16 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Loop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{ --bg:#0B0D12; --surface:#12151C; --surface-2:#191D27; --line:rgba(237,235,230,0.09); --line-strong:rgba(237,235,230,0.16); --text:#EDEBE6; --muted:#8A8FA0; --amber:#FFB454; --mint:#6EE7B7; --radius:14px; }
+        *{ box-sizing:border-box; }
+        body{ margin:0; background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; -webkit-font-smoothing:antialiased; }
+        a{ color:inherit; text-decoration:none; }
+        .mono{ font-family:'JetBrains Mono',monospace; }
+        .topbar{ display:flex; align-items:center; justify-content:space-between; padding:18px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(11,13,18,0.85); backdrop-filter:blur(8px); z-index:10; }
+        .topbar .back{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted); transition:color .2s ease; }
+        .topbar .back:hover{ color:var(--amber); }
+        .topbar .crumb{ font-size:11.5px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
+        .page{ max-width:640px; margin:0 auto; padding:6vh 24px 10vh; }
+        h1{ font-family:'JetBrains Mono',monospace; font-size:1.9rem; margin:0 0 26px; }
+        .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:24px; display:flex; gap:12px; flex-wrap:wrap; }
+        input{ background:var(--surface-2); border:1px solid var(--line-strong); color:var(--text); padding:11px 14px; border-radius:8px; font-family:'Manrope',sans-serif; font-size:14px; outline:none; flex:1; min-width:140px; }
+        input:focus{ border-color:var(--amber); }
+        button{ background:var(--amber); color:#1a1204; border:none; padding:11px 20px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-weight:600; font-size:13px; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; }
+        button:hover{ transform:translateY(-1px); box-shadow:0 0 0 4px rgba(255,180,84,0.15); }
+        #table{ margin-top:22px; display:grid; gap:8px; }
+        #table p{ margin:0; background:var(--surface-2); border:1px solid var(--line); padding:10px 16px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:13.5px; color:var(--mint); }
+    </style>
 </head>
 
 <body>
-    <h1>Loop</h1>
+    <div class="topbar">
+        <a href="index.html" class="back">← All assignments</a>
+        <span class="crumb mono">03 · Loops</span>
+    </div>
 
-    <input placeholder="Table Off" id="table_off" />
-    <input placeholder="No of Time" id="number_of_times" />
-    <button id="table_button">Show Table</button>
-    <div id="table"></div>
+    <div class="page">
+        <h1>Multiplication Table</h1>
+        <div class="card">
+            <input placeholder="Table Off" id="table_off" />
+            <input placeholder="No of Time" id="number_of_times" />
+            <button id="table_button">Show Table</button>
+        </div>
+        <div id="table"></div>
+    </div>
 
     <script>
         let tableOff = document.getElementById("table_off")

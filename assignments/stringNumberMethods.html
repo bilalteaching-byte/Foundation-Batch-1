@@ -5,32 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>String & Number Methods</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{ --bg:#0B0D12; --surface:#12151C; --surface-2:#191D27; --line:rgba(237,235,230,0.09); --line-strong:rgba(237,235,230,0.16); --text:#EDEBE6; --muted:#8A8FA0; --amber:#FFB454; --mint:#6EE7B7; --radius:14px; }
+        *{ box-sizing:border-box; }
+        body{ margin:0; background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; -webkit-font-smoothing:antialiased; }
+        a{ color:inherit; text-decoration:none; }
+        .mono{ font-family:'JetBrains Mono',monospace; }
+        .topbar{ display:flex; align-items:center; justify-content:space-between; padding:18px 6vw; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(11,13,18,0.85); backdrop-filter:blur(8px); z-index:10; }
+        .topbar .back{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted); transition:color .2s ease; }
+        .topbar .back:hover{ color:var(--amber); }
+        .topbar .crumb{ font-size:11.5px; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
+        .page{ max-width:680px; margin:0 auto; padding:6vh 24px 10vh; }
+        h1{ font-family:'JetBrains Mono',monospace; font-size:1.7rem; margin:0 0 24px; }
+        .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+        #attackPara{ margin:0 0 18px; line-height:1.8; color:var(--muted); font-size:15px; }
+        button{ background:var(--amber); color:#1a1204; border:none; padding:11px 20px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-weight:600; font-size:13px; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; }
+        button:hover{ transform:translateY(-1px); box-shadow:0 0 0 4px rgba(255,180,84,0.15); }
+        h2.section-label{ font-family:'JetBrains Mono',monospace; font-size:1rem; color:var(--amber); margin:34px 0 14px; }
+        ol{ color:var(--muted); line-height:1.9; padding-left:22px; }
+        ol b{ color:var(--text); }
+        ol ol{ margin-top:6px; }
+        ol ol li{ font-family:'JetBrains Mono',monospace; font-size:13.5px; }
+    </style>
 </head>
 
 <body>
-    <h1>
-        String & Number Methods
-    </h1>
+    <div class="topbar">
+        <a href="index.html" class="back">← All assignments</a>
+        <span class="crumb mono">05 · Strings, Numbers &amp; Dates</span>
+    </div>
 
-    <p id="attackPara">
-        US attacks Iran on 10th July and US ask Iran to open the
-        strait of Hormuz for all type of vehicles and if Iran does not
-        open the strait US will attack Iran again on 11th of July
-    </p>
-    <button id="replaceBtn">Replace</button>
-    <ol>
-        <li><b>String Methods</b>
-            <ol>
-                <li>length</li>
-                <li>slice</li>
-                <li>replace</li>
-                <li>substring , similar to slice</li>
-                <li>toUpperCase</li>
-                <li>toLowerCase</li>
-                <li>trim ,  remove extra space from start and end</li>
-            </ol>
-        </li>
-    </ol>
+    <div class="page">
+        <h1>String &amp; Number Methods</h1>
+
+        <div class="card">
+            <p id="attackPara">
+                US attacks Iran on 10th July and US ask Iran to open the
+                strait of Hormuz for all type of vehicles and if Iran does not
+                open the strait US will attack Iran again on 11th of July
+            </p>
+            <button id="replaceBtn">Replace</button>
+        </div>
+
+        <h2 class="section-label">Reference</h2>
+        <ol>
+            <li><b>String Methods</b>
+                <ol>
+                    <li>length</li>
+                    <li>slice</li>
+                    <li>replace</li>
+                    <li>substring , similar to slice</li>
+                    <li>toUpperCase</li>
+                    <li>toLowerCase</li>
+                    <li>trim ,  remove extra space from start and end</li>
+                </ol>
+            </li>
+        </ol>
+    </div>
 
     <script>
         // get length
