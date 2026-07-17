@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,32 +6,325 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Objects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #14171c;
+            --bg-grid: #1a1e25;
+            --panel: #1e222a;
+            --panel-2: #262b34;
+            --line: #333944;
+            --text: #f5f3ee;
+            --text-muted: #8b92a0;
+            --yellow: #f2c230;
+            --orange: #e8491d;
+            --radius: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0/24px 24px,
+                var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            padding: 40px 24px 80px;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: clamp(28px, 5vw, 44px);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin: 0 0 4px;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 64px;
+            height: 4px;
+            background: var(--yellow);
+            margin-top: 12px;
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            max-width: 960px;
+            margin: 0 auto 32px;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .intake {
+            max-width: 960px;
+            margin: 0 auto 40px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intake::before {
+            content: "REGISTRATION";
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .intake-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .intake input {
+            flex: 1 1 200px;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .intake input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .intake input:focus {
+            border-color: var(--yellow);
+            background: #2c313b;
+        }
+
+        #addCarBtn {
+            flex: 0 0 auto;
+            background: var(--yellow);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 22px;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        }
+
+        #addCarBtn:hover {
+            background: #ffd24d;
+            box-shadow: 0 4px 16px rgba(242, 194, 48, 0.25);
+        }
+
+        #addCarBtn:active {
+            transform: translateY(1px);
+        }
+
+        #cars_list {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .car-card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            width: 240px;
+            overflow: hidden;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+
+        .car-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--yellow);
+        }
+
+        .car-card .thumb-wrap {
+            width: 100%;
+            height: 150px;
+            background: #0e1014;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .car-card .info {
+            padding: 14px 16px 16px;
+        }
+
+        .car-card .name {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 17px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 10px;
+        }
+
+        .plate {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--panel-2);
+            border: 1px dashed var(--line);
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--yellow);
+            text-transform: uppercase;
+        }
+
+        .plate .label {
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .empty-state {
+            max-width: 960px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 1px;
+            border: 1px dashed var(--line);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+        }
+
+        @media (max-width: 520px) {
+            .intake-fields {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            #addCarBtn {
+                width: 100%;
+            }
+
+            .car-card {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Objects in html</h1>
+    <h1>Garage Registry</h1>
+    <p class="subtitle">// track every car and its owner</p>
+
+    <div class="intake">
+        <div class="intake-fields">
+            <input type="text" placeholder="Car Name" id="car_name">
+            <input type="text" placeholder="Owner Name" id="owner_name">
+            <input type="url" placeholder="Thumbnail URL" id="car_img">
+            <button id="addCarBtn">Add Car</button>
+        </div>
+    </div>
+
+    <div id="cars_list"></div>
 
     <script>
-        let user = {
-            firstName: "Bilal",
-            lastName: "Raza",
-            fatherName: "Muhammad Jawed",
-            dob: "asda",
-            age: 29,
-            isMarried: true,
-            siblingNames: ["Ahmed", "Hamza"],
-            schoolInfo: {
-                name: "SMIT",
-                batch: "1"
-            },
-            city: "Karachi"
+        let cars_list = document.getElementById("cars_list")
+        let car_name = document.getElementById("car_name")
+        let owner_name = document.getElementById("owner_name")
+        let car_img = document.getElementById("car_img")
+        let add_car_btn = document.getElementById("addCarBtn")
+
+        let cars = [{
+            thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBAdhBAsGcYEOIMB77RsRk0Mu1Iuux0czVNZwylbuVOP6L0jowkud7-TuO&s=10",
+            name: "Civic 2024", ownerName: "Ab", color: "red"
+        },
+        {
+            name: "Yaris", ownerName: "CD", color: "white",
+            thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYMazaVA7912I-YuZb8BqQMX-2EZYX7V5Oy59g60VeCmI3W-QjWtJeuz8&s=10",
+        },
+        {
+            name: "Swift", ownerName: "EF", color: "black",
+            thumbnail: "https://imgcdn.zigwheels.pk/large/gallery/color/13/111/suzuki-swift-color-811738.jpg"
+        },]
+
+        let renderCars = () => {
+            cars_list.innerHTML = ""
+
+            if (cars.length === 0) {
+                cars_list.innerHTML = `<div class="empty-state">No cars registered yet — add one above</div>`
+                return
+            }
+
+            cars.forEach((data) => {
+                let card = `<div class="car-card">
+                    <div class="thumb-wrap">
+                        <img src="${data.thumbnail}" alt="${data.name}" onerror="this.src='https://placehold.co/240x150/1e222a/8b92a0?text=No+Image'">
+                    </div>
+                    <div class="info">
+                        <h2 class="name">${data.name}</h2>
+                        <span class="plate"><span class="label">Owner</span>${data.ownerName}</span>
+                    </div>
+                </div>`
+                cars_list.innerHTML += card
+            })
         }
-        console.log(user)
+        renderCars()
 
-        console.log(user.firstName)
-        console.log(user.siblingNames)
-        console.log(user.siblingNames[0])
+        let addCar = () => {
+            if (!car_name.value.trim() || !owner_name.value.trim()) return
 
+            let carObj = {
+                thumbnail: car_img.value || "https://placehold.co/240x150/1e222a/8b92a0?text=No+Image",
+                name: car_name.value,
+                ownerName: owner_name.value,
+                color: "red"
+            }
+            cars.push(carObj)
+            renderCars()
+
+            car_name.value = ""
+            owner_name.value = ""
+            car_img.value = ""
+            car_name.focus()
+        }
+        add_car_btn.addEventListener("click", addCar)
     </script>
 </body>
 
