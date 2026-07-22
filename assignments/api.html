@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Integration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+
+        input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: royalblue;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #result {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .date {
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <input placeholder="Search News" id="search_input" />
+    <button  id="search_btn">Search</button>
+
+    <div id="result"></div>
+</body>
+
+<script>
+    let result = document.getElementById("result");
+    let search_input = document.getElementById("search_input");
+    let search_btn = document.getElementById("search_btn");
+
+    let renderlist = (query = "*") => {
+        fetch(`https://newsapi.org/v2/everything?q=${query}&from=2026-06-22&language=en&sortBy=publishedAt&apiKey=32d736e3da1741458a03785551c0b044`)
+            .then(res => res.json())
+            .then((data) => {
+                result.innerHTML = "";
+
+                data.articles.forEach((news) => {
+                    let card = `
+                <div class="card">
+                    <h4>${news.title}</h4>
+                    <p>${news.description || "No description available."}</p>
+                    <p class="date">${news.publishedAt}</p>
+                </div>`;
+
+                    result.innerHTML += card;
+                });
+            });
+    }
+    renderlist()
+  
+
+    let searchNews = ()=>{
+        renderlist(search_input.value)
+    }
+    search_btn.addEventListener("click" , searchNews)
+</script>
+
+</html>

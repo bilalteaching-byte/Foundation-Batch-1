@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        <input type="text" id="userName" placeholder="Username">
+        <input type="text" id="designation" placeholder="Designation">
+        <button id="welcomBtn">Welcome</button>
+
+        <h1 id="welcomeMsg"></h1>
+    </div>
+    <script>
+        let userName = document.getElementById("userName")
+        let designation = document.getElementById("designation")
+        let welcomBtn = document.getElementById("welcomBtn")
+        let welcomeMsg = document.getElementById("welcomeMsg")
+        // arrow function
+        let greet = (name, designation) => { // parameter 
+            welcomeMsg.innerHTML = `Welcome ${name}! ${designation} to the Event.`
+        }
+
+        let greetUser = () => greet(userName.value, designation.value)
+        
+        welcomBtn.addEventListener("click", greetUser)
+       
+
+    </script>
+</body>
+
+</html>
